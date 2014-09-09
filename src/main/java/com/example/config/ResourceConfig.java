@@ -5,10 +5,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 
-/**
- * This class represents the ResourceConfig.
- * @author Rajiv Jain
- */
 @Configuration
 public class ResourceConfig {
 

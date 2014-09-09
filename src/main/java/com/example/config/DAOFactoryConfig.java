@@ -6,10 +6,6 @@ import org.springframework.context.annotation.Configuration;
 import com.example.persistence.dao.DAOFactory;
 import com.example.persistence.hibernate.dao.HibernateDAOFactory;
 
-/**
- * This class represents the DAOFactoryConfig.
- * @author Rajiv Jain
- */
 @Configuration
 public class DAOFactoryConfig {
 

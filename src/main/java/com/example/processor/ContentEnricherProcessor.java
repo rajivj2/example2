@@ -10,10 +10,6 @@ import com.example.entities.Status;
 import com.example.entities.xml.Entity;
 import com.example.persistence.dao.StatusDAO;
 
-/**
- * This class acts as the ContentEnricherProcessor.
- * @author Rajiv Jain
- */
 public class ContentEnricherProcessor implements Processor {
 	
 	@Resource

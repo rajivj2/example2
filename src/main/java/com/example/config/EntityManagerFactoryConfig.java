@@ -7,10 +7,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 
-/**
- * This class represents the EntityManagerFactoryConfiguration.
- * @author Rajiv Jain
- */
 @Configuration
 public class EntityManagerFactoryConfig {
 

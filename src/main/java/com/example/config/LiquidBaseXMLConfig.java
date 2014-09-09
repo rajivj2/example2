@@ -5,10 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-/**
- * This class represents the LiquidBaseXMLConfiguration.
- * @author Rajiv Jain
- */
 @Configuration
 public class LiquidBaseXMLConfig {
 

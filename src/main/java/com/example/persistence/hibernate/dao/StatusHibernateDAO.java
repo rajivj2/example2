@@ -7,10 +7,6 @@ import org.slf4j.LoggerFactory;
 import com.example.entities.Status;
 import com.example.persistence.dao.StatusDAO;
 
-/**
- * This class implements specific methods for the MessageStatusDAO.
- * @author Rajiv Jain
- */
 public class StatusHibernateDAO extends GenericHibernateDAO<Status> implements StatusDAO {
 
 	private Logger logger = LoggerFactory.getLogger(StatusHibernateDAO.class);
@@ -19,11 +15,6 @@ public class StatusHibernateDAO extends GenericHibernateDAO<Status> implements S
 		
 	}
 
-	/**
-	 * This method finds by remote id.
-	 * @param id the id.
-	 * @return a MessageStatusEntity.
-	 */
 	public Status findByUserId(int userId) {
 		Status status = null;
 		List<Status> list = null;

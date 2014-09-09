@@ -6,10 +6,6 @@ import org.springframework.context.annotation.DependsOn;
 import com.example.persistence.dao.StatusDAO;
 import com.example.persistence.hibernate.dao.StatusHibernateDAO;
 
-/**
- * This class represents the DAOConfiguration.
- * @author Rajiv Jain
- */
 @Configuration
 public class DAOConfig {
 	

@@ -32,11 +32,11 @@ import com.example.persistence.dao.StatusDAO;
 @TransactionConfiguration(defaultRollback = false, transactionManager = "transactionManager")
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(loader = AnnotationConfigContextLoader.class, classes = {DAOConfig.class, DAOFactoryConfig.class, ResourceConfig.class, DataSourceConfig.class, LiquidBaseXMLConfig.class, HibernateConfig.class, EntityManagerFactoryConfig.class, TransactionManagerConfig.class, ApacheCamelConfig.class})
-public class DeliveryNotificationRouterIT extends SetupJUnitITProcessor {
+public class NotificationRouterIT extends SetupJUnitITProcessor {
 	
-	private Logger logger = LoggerFactory.getLogger(DeliveryNotificationRouterIT.class);
+	private Logger logger = LoggerFactory.getLogger(NotificationRouterIT.class);
 	
-	public DeliveryNotificationRouterIT() throws Exception {
+	public NotificationRouterIT() throws Exception {
 		
 	}
 	

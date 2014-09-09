@@ -8,10 +8,6 @@ import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-/**
- * This class represents the TransactionManagerConfigururation.
- * @author Rajiv Jain
- */
 @Configuration
 @EnableTransactionManagement
 public class TransactionManagerConfig {

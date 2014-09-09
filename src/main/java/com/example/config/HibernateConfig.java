@@ -6,10 +6,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
-/**
- * This class represents the HibernateConfiguration.
- * @author Rajiv Jain
- */
 @Configuration
 public class HibernateConfig {
 

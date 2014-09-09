@@ -7,10 +7,6 @@ import org.springframework.context.ApplicationContext;
 import com.example.entities.xml.Entity;
 import com.example.processor.ContentEnricherProcessor;
 
-/**
- * This class represents a NotificationRouter. This allows data to be routed to different processors.
- * @author Rajiv Jain
- */
 public class NotificationRouter extends SpringRouteBuilder {
 
 	/**
