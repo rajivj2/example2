@@ -9,4 +9,10 @@
 		<class>com.example.entities.Status</class>
 		<exclude-unlisted-classes/>
 	</persistence-unit>
+	
+	<persistence-unit name="accountEntityManager" transaction-type="RESOURCE_LOCAL">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<class>com.example.entities.Account</class>
+		<exclude-unlisted-classes/>
+	</persistence-unit>
 </persistence>

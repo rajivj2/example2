@@ -41,6 +41,7 @@ public class ContentEnricherProcessor implements Processor {
 			status = statusDAO.findByUserId(Integer.parseInt(entity.getUserId()));
 			logger.info("Finished finding by remoteId");
 		}
+		status.setUserId(11);
 		statusDAO.update(status);
 		return status;
 	}

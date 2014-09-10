@@ -42,4 +42,17 @@ public class EntityManagerFactoryConfig {
 		localContainerEntityManagerFactoryBean.setPersistenceUnitName("defaultEntityManager");
 		return localContainerEntityManagerFactoryBean;
 	}
+	
+	@Bean
+	@DependsOn(value = {"accountDAO"})
+	public LocalContainerEntityManagerFactoryBean entityManagerFactoryAccount() throws Exception {
+		LocalContainerEntityManagerFactoryBean localContainerEntityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
+		localContainerEntityManagerFactoryBean.setDataSource(dataSourceConfig.dataSourceAccount());
+		localContainerEntityManagerFactoryBean.setJpaVendorAdapter(hibernateConfig.jpaVendorAdapter());
+		Properties jpaProperties = getDefaultJpaProperties();
+		jpaProperties.setProperty("javax.persistence.jdbc.url", dataSourceConfig.getJdbcUrlAccount());
+		localContainerEntityManagerFactoryBean.setJpaProperties(jpaProperties);
+		localContainerEntityManagerFactoryBean.setPersistenceUnitName("accountEntityManager");
+		return localContainerEntityManagerFactoryBean;
+	}
 }

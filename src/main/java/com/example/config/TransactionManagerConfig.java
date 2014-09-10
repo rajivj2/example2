@@ -15,6 +15,7 @@ public class TransactionManagerConfig {
 	@Autowired
 	private EntityManagerFactoryConfig entityManagerFactoryConfig;
 	private static JpaTransactionManager jpaTransactionManager;
+	private static JpaTransactionManager jpaTransactionManagerAccount;
 	
 	@Bean
 	@DependsOn(value = {"entityManagerFactory"})
@@ -24,5 +25,15 @@ public class TransactionManagerConfig {
 			jpaTransactionManager.setEntityManagerFactory(entityManagerFactoryConfig.entityManagerFactory().getObject());
 		}
 		return jpaTransactionManager;
+	}
+	
+	@Bean
+	@DependsOn(value = {"entityManagerFactoryAccount"})
+	public PlatformTransactionManager transactionManagerAccount() throws Exception {
+		if(jpaTransactionManagerAccount == null) {
+			jpaTransactionManagerAccount = new JpaTransactionManager();
+			jpaTransactionManagerAccount.setEntityManagerFactory(entityManagerFactoryConfig.entityManagerFactoryAccount().getObject());
+		}
+		return jpaTransactionManagerAccount;
 	}
 }

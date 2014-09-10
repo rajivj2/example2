@@ -22,4 +22,12 @@ public class LiquidBaseXMLConfig {
 		springLiquibase.setChangeLog("db-changelog.xml");
  		return springLiquibase;
 	}
+	
+	@Bean
+	public SpringLiquibase liquibaseAccount() throws Exception {
+		SpringLiquibase springLiquibase = new SpringLiquibase();
+		springLiquibase.setDataSource(dataSourceConfig.dataSourceAccount());
+		springLiquibase.setChangeLog("db-changelog-account.xml");
+		return springLiquibase;
+	}
 }

@@ -14,7 +14,7 @@ public class DAOFactoryConfig {
 	
 	@Bean
 	public DAOFactory daoFactory() throws Exception {
-		DAOFactory daoFactory = new HibernateDAOFactory(daoConfig.statusDAO());
+		DAOFactory daoFactory = new HibernateDAOFactory(daoConfig.statusDAO(), daoConfig.accountDAO());
 		return daoFactory;
 	}
 }

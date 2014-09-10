@@ -1,9 +1,11 @@
 package com.example.router;
 
 import java.util.Properties;
+
 import org.apache.camel.ExchangePattern;
 import org.apache.camel.spring.SpringRouteBuilder;
 import org.springframework.context.ApplicationContext;
+
 import com.example.entities.xml.Entity;
 import com.example.processor.ContentEnricherProcessor;
 
@@ -21,7 +23,7 @@ public class NotificationRouter extends SpringRouteBuilder {
 			.multicast()
 			.to("direct:x")
 			.end();
-		from("direct:x").process((ContentEnricherProcessor) applicationContext.getBean("contentEnricherProcessor"))
-						.to(ExchangePattern.InOnly, properties.getProperty("activemq.destination"));
+		from("direct:x").transacted().process((ContentEnricherProcessor) applicationContext.getBean("contentEnricherProcessor"))
+						.to(properties.getProperty("activemq.destination"));
 	}
 }

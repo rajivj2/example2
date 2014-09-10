@@ -12,6 +12,8 @@ public class DataSourceConfig {
 	
 	@Value("${jdbc.url}")
 	private String jdbcUrlDefault;
+	@Value("${jdbc.url.account}")
+	private String jdbcUrlAccount;
 	@Value("${jdbc.username}")
 	private String jdbcUsername;
 	@Value("${jdbc.password}")
@@ -55,11 +57,26 @@ public class DataSourceConfig {
 		return jdbcDriverClassName;
 	}
 
+	public String getJdbcUrlAccount() {
+		return jdbcUrlAccount;
+	}
+
 	@Bean
 	@DependsOn(value = {"properties"})
 	public DataSource dataSource() throws Exception {
    		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setUrl(jdbcUrlDefault);
+		dataSource.setUsername(jdbcUsername);
+		dataSource.setPassword(jdbcPassword);
+		dataSource.setDriverClassName(jdbcDriverClassName);
+		return dataSource;
+	}
+	
+	@Bean
+	@DependsOn(value = {"properties"})
+	public DataSource dataSourceAccount() throws Exception {
+		DriverManagerDataSource dataSource = new DriverManagerDataSource();
+		dataSource.setUrl(jdbcUrlAccount);
 		dataSource.setUsername(jdbcUsername);
 		dataSource.setPassword(jdbcPassword);
 		dataSource.setDriverClassName(jdbcDriverClassName);

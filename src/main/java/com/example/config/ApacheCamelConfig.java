@@ -5,13 +5,15 @@ import java.util.Properties;
 import org.apache.activemq.camel.component.ActiveMQComponent;
 import org.apache.camel.CamelContext;
 import org.apache.camel.builder.RouteBuilder;
-import org.apache.camel.osgi.SpringCamelContextFactory;
+import org.apache.camel.spring.SpringCamelContext;
 import org.apache.camel.spring.javaconfig.SingleRouteCamelConfiguration;
+import org.apache.camel.spring.spi.SpringTransactionPolicy;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
+import org.springframework.transaction.PlatformTransactionManager;
 
 import com.example.processor.ContentEnricherProcessor;
 import com.example.router.NotificationRouter;
@@ -19,8 +21,11 @@ import com.example.router.NotificationRouter;
 @Configuration
 public class ApacheCamelConfig extends SingleRouteCamelConfiguration implements InitializingBean {
 
+	private static CamelContext camelContext;
 	@Autowired
 	private DAOFactoryConfig daoFactoryConfig;
+	@Autowired
+	private TransactionManagerConfig transactionManagerConfig;
 	private Properties properties;
 	
 	public ApacheCamelConfig() throws Exception {
@@ -30,9 +35,7 @@ public class ApacheCamelConfig extends SingleRouteCamelConfiguration implements 
 	
 	@Bean(name = "context")
 	protected CamelContext createCamelContext() throws Exception {
-		SpringCamelContextFactory factory = new SpringCamelContextFactory();
-		factory.setApplicationContext(getApplicationContext());
-		return factory.createContext();
+		return camelContext = new SpringCamelContext(getApplicationContext());
 	}
 	
 	protected void setupCamelContext(CamelContext camelContext) throws Exception {
@@ -44,10 +47,10 @@ public class ApacheCamelConfig extends SingleRouteCamelConfiguration implements 
 	}
 	
 	@Bean
+	@DependsOn(value = {"context"})
 	public CamelContext stop() throws Exception {
-		CamelContext context = createCamelContext();
-		context.stop();
-		return context;
+		camelContext.stop();
+		return camelContext;
 	}
 	
 	@Bean
@@ -62,10 +65,10 @@ public class ApacheCamelConfig extends SingleRouteCamelConfiguration implements 
 		return contentEnricherProcessor;
 	}
 	
-	/** @Bean
+	@Bean
 	public SpringTransactionPolicy defaultTransactionPolicy() throws Exception {
 		SpringTransactionPolicy transactionPolicy = new SpringTransactionPolicy();
 		transactionPolicy.setTransactionManager((PlatformTransactionManager) transactionManagerConfig.transactionManager());
 		return transactionPolicy;
-	} */
+	}
 }
