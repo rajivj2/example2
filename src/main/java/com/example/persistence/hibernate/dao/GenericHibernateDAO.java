@@ -23,18 +23,16 @@ public abstract class GenericHibernateDAO<T> implements GenericDAO<T> {
 		}
 		else {
 			entityManager.persist(t);
-			entityManager.flush();
 		}
 		return t;
 	}
-	
+
 	public T update(T t) {
 		if(t == null) {
 			throw new NullPointerException("Entity cannot be null");
 		}
 		else {
 			entityManager.merge(t);
-			entityManager.flush();
 		}
 		return t;
 	}

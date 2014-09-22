@@ -9,7 +9,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
-@EnableTransactionManagement
+@EnableTransactionManagement(proxyTargetClass = true)
 public class TransactionManagerConfig {
 
 	@Autowired
@@ -27,13 +27,13 @@ public class TransactionManagerConfig {
 		return jpaTransactionManager;
 	}
 	
-	@Bean
-	@DependsOn(value = {"entityManagerFactoryAccount"})
+	@Bean 
+	@DependsOn(value = {"entityManagerFactoryAccount"}) 
 	public PlatformTransactionManager transactionManagerAccount() throws Exception {
 		if(jpaTransactionManagerAccount == null) {
-			jpaTransactionManagerAccount = new JpaTransactionManager();
-			jpaTransactionManagerAccount.setEntityManagerFactory(entityManagerFactoryConfig.entityManagerFactoryAccount().getObject());
-		}
+			jpaTransactionManagerAccount = new JpaTransactionManager(); 
+	 		jpaTransactionManagerAccount.setEntityManagerFactory(entityManagerFactoryConfig.entityManagerFactoryAccount().getObject()); 
+	 	}
 		return jpaTransactionManagerAccount;
 	}
 }

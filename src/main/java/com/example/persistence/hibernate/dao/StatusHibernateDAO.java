@@ -14,7 +14,7 @@ public class StatusHibernateDAO extends GenericHibernateDAO<Status> implements S
 	public StatusHibernateDAO() {
 		
 	}
-
+	
 	public Status findByUserId(int userId) {
 		Status status = null;
 		List<Status> list = null;

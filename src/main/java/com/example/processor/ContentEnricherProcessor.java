@@ -6,10 +6,12 @@ import org.apache.camel.Message;
 import org.apache.camel.Processor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.transaction.annotation.Transactional;
 import com.example.entities.Status;
 import com.example.entities.xml.Entity;
 import com.example.persistence.dao.StatusDAO;
 
+@Transactional(value = "transactionManager")
 public class ContentEnricherProcessor implements Processor {
 	
 	@Resource
@@ -21,6 +23,10 @@ public class ContentEnricherProcessor implements Processor {
 		logger = LoggerFactory.getLogger(ContentEnricherProcessor.class);
 	}
 	
+	ContentEnricherProcessor() {
+		super();
+	}
+
 	/**
 	 * This method processes the data by aggregating the data.
 	 * @param exchange the exchange.

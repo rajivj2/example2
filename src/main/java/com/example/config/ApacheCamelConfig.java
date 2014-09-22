@@ -1,7 +1,6 @@
 package com.example.config;
 
 import java.util.Properties;
-
 import org.apache.activemq.camel.component.ActiveMQComponent;
 import org.apache.camel.CamelContext;
 import org.apache.camel.builder.RouteBuilder;
@@ -14,7 +13,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.transaction.PlatformTransactionManager;
-
+import com.example.processor.AccountProcessor;
 import com.example.processor.ContentEnricherProcessor;
 import com.example.router.NotificationRouter;
 
@@ -66,9 +65,15 @@ public class ApacheCamelConfig extends SingleRouteCamelConfiguration implements 
 	}
 	
 	@Bean
+	public AccountProcessor accountProcessor() throws Exception {
+		AccountProcessor accountProcessor = new AccountProcessor(daoFactoryConfig.daoFactory().getStatusDAO());
+		return accountProcessor;
+	}
+	
+	@Bean
 	public SpringTransactionPolicy defaultTransactionPolicy() throws Exception {
-		SpringTransactionPolicy transactionPolicy = new SpringTransactionPolicy();
-		transactionPolicy.setTransactionManager((PlatformTransactionManager) transactionManagerConfig.transactionManager());
-		return transactionPolicy;
+		SpringTransactionPolicy springTransactionPolicy = new SpringTransactionPolicy();
+		springTransactionPolicy.setTransactionManager((PlatformTransactionManager) transactionManagerConfig.transactionManager());
+		return springTransactionPolicy;
 	}
 }

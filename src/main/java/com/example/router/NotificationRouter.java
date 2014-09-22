@@ -1,16 +1,20 @@
 package com.example.router;
 
 import java.util.Properties;
-
-import org.apache.camel.ExchangePattern;
+import javax.inject.Inject;
 import org.apache.camel.spring.SpringRouteBuilder;
 import org.springframework.context.ApplicationContext;
-
 import com.example.entities.xml.Entity;
+import com.example.processor.AccountProcessor;
 import com.example.processor.ContentEnricherProcessor;
 
 public class NotificationRouter extends SpringRouteBuilder {
 
+	@Inject
+	private ContentEnricherProcessor contentEnricherProcessor;
+	@Inject
+	private AccountProcessor accountProcessor;
+	
 	/**
 	 * This method configures the routes.
 	 * @throws Exception when an Exception occurs.
@@ -23,7 +27,8 @@ public class NotificationRouter extends SpringRouteBuilder {
 			.multicast()
 			.to("direct:x")
 			.end();
-		from("direct:x").transacted().process((ContentEnricherProcessor) applicationContext.getBean("contentEnricherProcessor"))
+		from("direct:x").process(contentEnricherProcessor)
+						.process(accountProcessor)
 						.to(properties.getProperty("activemq.destination"));
 	}
 }
