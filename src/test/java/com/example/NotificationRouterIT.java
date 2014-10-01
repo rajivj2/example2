@@ -1,7 +1,9 @@
 package com.example;
 
 import static org.junit.Assert.*;
+
 import javax.annotation.Resource;
+
 import org.apache.camel.component.mock.MockEndpoint;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,21 +17,21 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallbackWithoutResult;
 import org.springframework.transaction.support.TransactionTemplate;
+
 import com.example.config.ApacheCamelConfig;
-import com.example.config.DAOConfig;
-import com.example.config.DAOFactoryConfig;
-import com.example.config.DataSourceConfig;
-import com.example.config.EntityManagerFactoryConfig;
-import com.example.config.HibernateConfig;
-import com.example.config.LiquidBaseXMLConfig;
 import com.example.config.ProcessPersistenceConfig;
 import com.example.config.ResourceConfig;
-import com.example.config.TransactionManagerConfig;
+import com.example.datasource.DefaultJDBCDataSourceConfig;
+import com.example.datasource.HibernateConfig;
 import com.example.entities.Status;
+import com.example.entitymanager.DefaultEntityManagerFactoryConfig;
+import com.example.liquibase.DefaultLiquidBaseXMLConfig;
+import com.example.persistence.dao.jpa.factory.StatusJpaFactory;
+import com.example.transactionmanager.DefaultTransactionManagerConfig;
 
 @TransactionConfiguration(defaultRollback = false, transactionManager = "transactionManager")
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(loader = AnnotationConfigContextLoader.class, classes = {DAOConfig.class, DAOFactoryConfig.class, ResourceConfig.class, DataSourceConfig.class, LiquidBaseXMLConfig.class, HibernateConfig.class, EntityManagerFactoryConfig.class, TransactionManagerConfig.class, ProcessPersistenceConfig.class, ApacheCamelConfig.class})
+@ContextConfiguration(loader = AnnotationConfigContextLoader.class, classes = {StatusJpaFactory.class, ResourceConfig.class, DefaultJDBCDataSourceConfig.class, DefaultLiquidBaseXMLConfig.class, HibernateConfig.class, DefaultEntityManagerFactoryConfig.class, DefaultTransactionManagerConfig.class, ProcessPersistenceConfig.class, ApacheCamelConfig.class})
 public class NotificationRouterIT extends SetupJUnitITProcessor {
 	
 	private Logger logger = LoggerFactory.getLogger(NotificationRouterIT.class);

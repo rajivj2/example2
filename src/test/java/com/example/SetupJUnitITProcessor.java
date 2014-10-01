@@ -8,7 +8,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.example.config.ApacheCamelConfig;
-import com.example.config.DAOConfig;
 import com.example.persistence.dao.StatusDAO;
 
 public class SetupJUnitITProcessor { 
@@ -21,7 +20,6 @@ public class SetupJUnitITProcessor {
 	protected Properties properties;
 	protected String source;
 	@Autowired
-	private DAOConfig daoConfig;
 	protected StatusDAO statusDAO;
 	
 	public SetupJUnitITProcessor() throws Exception {
@@ -33,7 +31,6 @@ public class SetupJUnitITProcessor {
 	@Before
 	public void setUp() throws Exception {
 		producerTemplate = context.createProducerTemplate();
-		statusDAO = daoConfig.statusDAO();
 	}
 	
 	@After

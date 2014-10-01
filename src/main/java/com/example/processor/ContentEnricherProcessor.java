@@ -18,12 +18,7 @@ public class ContentEnricherProcessor implements Processor {
 	private StatusDAO statusDAO;
 	private Logger logger;
 	
-	public ContentEnricherProcessor(StatusDAO statusDAO) {
-		this.statusDAO = statusDAO;
-		logger = LoggerFactory.getLogger(ContentEnricherProcessor.class);
-	}
-	
-	ContentEnricherProcessor() {
+	public ContentEnricherProcessor() {
 		super();
 	}
 

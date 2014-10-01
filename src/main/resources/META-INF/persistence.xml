@@ -15,4 +15,10 @@
 		<class>com.example.entities.Account</class>
 		<exclude-unlisted-classes/>
 	</persistence-unit>
+	
+	<persistence-unit name="employeeEntityManager" transaction-type="RESOURCE_LOCAL">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<class>com.example.entities.Employee</class>
+		<exclude-unlisted-classes/>
+	</persistence-unit>
 </persistence>

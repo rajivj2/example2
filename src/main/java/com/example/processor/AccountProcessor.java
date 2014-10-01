@@ -16,12 +16,7 @@ public class AccountProcessor implements Processor {
 	private StatusDAO statusDAO;
 	private Logger logger;
 	
-	public AccountProcessor(StatusDAO statusDAO) {
-		this.statusDAO = statusDAO;
-		logger = LoggerFactory.getLogger(AccountProcessor.class);
-	}
-	
-	AccountProcessor() {
+	public AccountProcessor() {
 		super();
 	}
 

@@ -1,9 +1,7 @@
 package com.example.processor;
 
 import static org.junit.Assert.*;
-
 import java.util.Date;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,22 +10,19 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.example.config.DAOConfig;
-import com.example.config.DAOFactoryConfig;
-import com.example.config.DataSourceConfig;
-import com.example.config.EntityManagerFactoryConfig;
-import com.example.config.HibernateConfig;
-import com.example.config.LiquidBaseXMLConfig;
 import com.example.config.ResourceConfig;
-import com.example.config.TransactionManagerConfig;
+import com.example.datasource.DefaultJDBCDataSourceConfig;
+import com.example.datasource.HibernateConfig;
 import com.example.entities.Status;
 import com.example.entities.xml.Entity;
+import com.example.entitymanager.DefaultEntityManagerFactoryConfig;
+import com.example.liquibase.DefaultLiquidBaseXMLConfig;
 import com.example.persistence.dao.StatusDAO;
 import com.example.processor.ContentEnricherProcessor;
+import com.example.transactionmanager.DefaultTransactionManagerConfig;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(loader = AnnotationConfigContextLoader.class, classes = {DAOConfig.class, DAOFactoryConfig.class, ResourceConfig.class, DataSourceConfig.class, LiquidBaseXMLConfig.class, HibernateConfig.class, EntityManagerFactoryConfig.class, TransactionManagerConfig.class})
+@ContextConfiguration(loader = AnnotationConfigContextLoader.class, classes = {ResourceConfig.class, DefaultJDBCDataSourceConfig.class, DefaultLiquidBaseXMLConfig.class, HibernateConfig.class, DefaultEntityManagerFactoryConfig.class, DefaultTransactionManagerConfig.class})
 public class RouterNoApacheCamelIT {
 	
 	@Autowired
@@ -37,7 +32,7 @@ public class RouterNoApacheCamelIT {
 	
 	@Before
 	public void setUp() throws Exception {
-		contentEnricherProcessor = new ContentEnricherProcessor(statusDAO);
+		contentEnricherProcessor = new ContentEnricherProcessor();
 		status = new Status();
 		status.setUserId(10);
 		statusDAO.save(status);
