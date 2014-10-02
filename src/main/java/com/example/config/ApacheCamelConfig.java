@@ -43,9 +43,18 @@ public class ApacheCamelConfig extends SingleRouteCamelConfiguration implements 
 		properties.load(ClassLoader.getSystemResourceAsStream("camel.properties"));
 	}
 	
+//	@ManagedOperation
 	@Bean(name = "context")
 	protected CamelContext createCamelContext() throws Exception {
-		return camelContext = new SpringCamelContext(getApplicationContext());
+		camelContext = new SpringCamelContext(getApplicationContext());
+		camelContext.setAutoStartup(false);
+//		return camelContext = new SpringCamelContext(getApplicationContext());
+		return camelContext;
+	}
+	
+	@ManagedOperation
+	public void start() throws Exception {
+		camelContext.start();
 	}
 	
 	protected void setupCamelContext(CamelContext camelContext) throws Exception {
@@ -76,11 +85,11 @@ public class ApacheCamelConfig extends SingleRouteCamelConfiguration implements 
 	}
 	
 	@ManagedOperation(description = "Stops the Apache Camel Context")
-	@Bean
-	@DependsOn(value = {"context"})
-	public CamelContext stop() throws Exception {
+//	@Bean
+//	@DependsOn(value = {"context"})
+	public void stop() throws Exception {
 		camelContext.stop();
-		return camelContext;
+//		return camelContext;
 	}
 	
 	@Bean
