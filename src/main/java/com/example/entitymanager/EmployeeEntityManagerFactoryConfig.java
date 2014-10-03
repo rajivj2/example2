@@ -34,7 +34,7 @@ public class EmployeeEntityManagerFactoryConfig {
 	}
 	
 	@Bean
-	@DependsOn(value = {"liquibaseEmployee"})
+//	@DependsOn(value = {"liquibaseEmployee"})
 	public LocalContainerEntityManagerFactoryBean entityManagerFactoryEmployee() throws Exception {
 		LocalContainerEntityManagerFactoryBean localContainerEntityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
 		localContainerEntityManagerFactoryBean.setDataSource(employeeDataSource);

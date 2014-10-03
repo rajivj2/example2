@@ -35,6 +35,6 @@ public class SetupJUnitITProcessor {
 	
 	@After
 	public void tearDown() throws Exception {
-		config.stop();
+//		config.stop();
 	}
 }

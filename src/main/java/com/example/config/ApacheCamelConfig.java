@@ -18,6 +18,7 @@ import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.annotation.EnableMBeanExport;
 import org.springframework.jmx.export.annotation.AnnotationJmxAttributeSource;
 import org.springframework.jmx.export.annotation.ManagedOperation;
+import org.springframework.jmx.export.annotation.ManagedOperationParameter;
 import org.springframework.jmx.export.annotation.ManagedResource;
 import org.springframework.jmx.export.assembler.MetadataMBeanInfoAssembler;
 import org.springframework.jmx.support.MBeanServerFactoryBean;
@@ -85,10 +86,11 @@ public class ApacheCamelConfig extends SingleRouteCamelConfiguration implements 
 	}
 	
 	@ManagedOperation(description = "Stops the Apache Camel Context")
+	@ManagedOperationParameter(name = "route", description = "i")
 //	@Bean
 //	@DependsOn(value = {"context"})
-	public void stop() throws Exception {
-		camelContext.stop();
+	public void stop(String route) throws Exception {
+		camelContext.stopRoute(route);
 //		return camelContext;
 	}
 	

@@ -33,7 +33,7 @@ public class DefaultEntityManagerFactoryConfig {
 	}
 	
 	@Bean
-	@DependsOn(value = {"liquibase"})
+//	@DependsOn(value = {"liquibase"})
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() throws Exception {
 		LocalContainerEntityManagerFactoryBean localContainerEntityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
 		localContainerEntityManagerFactoryBean.setDataSource(defaultDataSource);

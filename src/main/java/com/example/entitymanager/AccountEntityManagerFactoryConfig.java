@@ -33,7 +33,7 @@ public class AccountEntityManagerFactoryConfig {
 	}
 	
 	@Bean
-	@DependsOn(value = {"liquibaseAccount"})
+//	@DependsOn(value = {"liquibaseAccount"})
 	public LocalContainerEntityManagerFactoryBean entityManagerFactoryAccount() throws Exception {
 		LocalContainerEntityManagerFactoryBean localContainerEntityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
 		localContainerEntityManagerFactoryBean.setDataSource(accountDataSource);
