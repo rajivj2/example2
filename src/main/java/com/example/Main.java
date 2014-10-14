@@ -18,7 +18,7 @@ public class Main {
 	private static Logger logger = LoggerFactory.getLogger(Main.class);
 	
 	public static void main(String[] args) throws Exception {
-		ApplicationContext application = application = new AnnotationConfigApplicationContext("com.example.config", 
+		ApplicationContext application = application = new AnnotationConfigApplicationContext("com.example.config",   
 				"com.example.datasource", "com.example.liquibase", "com.example.entitymanager", "com.example.persistence.dao.jpa.factory", 
 				"com.example.transactionmanager");
 	}

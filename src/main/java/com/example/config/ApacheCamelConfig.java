@@ -54,8 +54,9 @@ public class ApacheCamelConfig extends SingleRouteCamelConfiguration implements 
 	}
 	
 	@ManagedOperation
-	public void start() throws Exception {
-		camelContext.start();
+	@ManagedOperationParameter(name = "route", description = "i")
+	public void start(String route) throws Exception {
+		camelContext.startRoute(route);
 	}
 	
 	protected void setupCamelContext(CamelContext camelContext) throws Exception {

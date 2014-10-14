@@ -12,4 +12,74 @@
 			</column>
 		</createTable>
 	</changeSet>
+	
+	<changeSet author="mjog" id="3">
+		<createTable tableName="delivery_notification_code">
+			<column name="ID" type="int(11)" autoIncrement="true">
+				<constraints nullable="false" primaryKey="true"/>
+			</column>
+			<column name="source" type="varchar(8)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="status" type="varchar(6)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="code" type="int(11)">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+	</changeSet>
+	
+	<changeSet author="mjog" id="4">
+		<insert tableName="delivery_notification_code">
+			<column name="source" value="Voice"/>
+			<column name="status" value="FAIL"/>
+			<column name="code" value="35"/>
+		</insert>
+		<insert tableName="delivery_notification_code">
+			<column name="source" value="Voice"/>
+			<column name="status" value="SENT"/>
+			<column name="code" value="36"/>
+		</insert>
+		<insert tableName="delivery_notification_code">
+			<column name="source" value="Portal"/>
+			<column name="status" value="FAIL"/>
+			<column name="code" value="46"/>
+		</insert>
+		<insert tableName="delivery_notification_code">
+			<column name="source" value="Portal"/>
+			<column name="status" value="SENT"/>
+			<column name="code" value="45"/>
+		</insert>
+		<insert tableName="delivery_notification_code">
+			<column name="source" value="Hybrid"/>
+			<column name="status" value="FAIL"/>
+			<column name="code" value="44"/>
+		</insert>
+		<insert tableName="delivery_notification_code">
+			<column name="source" value="Hybrid"/>
+			<column name="status" value="SENT"/>
+			<column name="code" value="43"/>
+		</insert>
+		<insert tableName="delivery_notification_code">
+			<column name="source" value="Esendex"/>
+			<column name="status" value="FAIL"/>
+			<column name="code" value="19"/>
+		</insert>
+		<insert tableName="delivery_notification_code">
+			<column name="source" value="Esendex"/>
+			<column name="status" value="SENT"/>
+			<column name="code" value="18"/>
+		</insert>
+		<insert tableName="delivery_notification_code">
+			<column name="source" value="Nhs Mail"/>
+			<column name="status" value="FAIL"/>
+			<column name="code" value="21"/>
+		</insert>
+		<insert tableName="delivery_notification_code">
+			<column name="source" value="Nhs Mail"/>
+			<column name="status" value="SENT"/>
+			<column name="code" value="20"/>
+		</insert>		
+	</changeSet>
 </databaseChangeLog>

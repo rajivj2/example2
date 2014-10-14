@@ -1,11 +1,8 @@
 package com.example;
 
-import static org.junit.Assert.*;
-
+import static org.junit.Assert.assertNotNull;
 import javax.annotation.Resource;
-
 import org.apache.camel.component.mock.MockEndpoint;
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +14,6 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallbackWithoutResult;
 import org.springframework.transaction.support.TransactionTemplate;
-
 import com.example.config.ApacheCamelConfig;
 import com.example.config.ProcessPersistenceConfig;
 import com.example.config.ResourceConfig;
@@ -33,17 +29,17 @@ import com.example.transactionmanager.DefaultTransactionManagerConfig;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(loader = AnnotationConfigContextLoader.class, classes = {StatusJpaFactory.class, ResourceConfig.class, DefaultJDBCDataSourceConfig.class, DefaultLiquidBaseXMLConfig.class, HibernateConfig.class, DefaultEntityManagerFactoryConfig.class, DefaultTransactionManagerConfig.class, ProcessPersistenceConfig.class, ApacheCamelConfig.class})
 public class NotificationRouterIT extends SetupJUnitITProcessor {
-	
+
 	private Logger logger = LoggerFactory.getLogger(NotificationRouterIT.class);
-	
+
 	@Resource(name = "transactionManager")
 	private JpaTransactionManager transactionManager;
-	
+
 	public NotificationRouterIT() throws Exception {
-		
+
 	}
-	
-	@Test
+
+//	@Test
 	public void testMessageSendToConsumerQueueRemoteId() throws Exception {
 		TransactionTemplate t = new TransactionTemplate();
 		t.setTransactionManager(transactionManager);
