@@ -3,7 +3,6 @@ package com.example.datasource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.DependsOn;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
 @Configuration
@@ -15,11 +14,13 @@ public class HibernateConfig {
 	private String hibernateShowSQL;
 	@Value("${hibernate.hbm2ddl.auto}")
 	private String hibernateHbm2DDL;
-	
+	@Value("${dataSourceXAClass}")
+	private String dataSourceXAClass;
+
 	public HibernateConfig() {
-		
+
 	}
-	
+
 	@Bean
 	public HibernateJpaVendorAdapter jpaVendorAdapter() {
   		HibernateJpaVendorAdapter hibernateJpaVendorAdapter = new HibernateJpaVendorAdapter();
@@ -49,5 +50,9 @@ public class HibernateConfig {
 	 */
 	public String getHibernateHbm2DDL() {
 		return hibernateHbm2DDL;
+	}
+
+	public String getDataSourceXAClass() {
+		return dataSourceXAClass;
 	}
 }

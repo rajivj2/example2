@@ -32,7 +32,7 @@ public class EmployeeEntityManagerFactoryConfig {
 //	@DependsOn(value = {"liquibaseEmployee"})
 	public LocalContainerEntityManagerFactoryBean entityManagerFactoryEmployee() throws Exception {
 		LocalContainerEntityManagerFactoryBean localContainerEntityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
-		localContainerEntityManagerFactoryBean.setDataSource(employeeDataSource);
+		localContainerEntityManagerFactoryBean.setJtaDataSource(employeeDataSource);
 		localContainerEntityManagerFactoryBean.setJpaVendorAdapter(hibernateJpaVendorAdapter);
 		Properties jpaProperties = defaultJDBCDataSourceConfig.getDefaultJpaProperties();
 		jpaProperties.setProperty("javax.persistence.jdbc.url", employeeDataSourceFactoryConfig.getJdbcUrlEmployee());

@@ -8,12 +8,11 @@
   <packaging>jar</packaging>
 
   <name>example</name>
-  <url>http://maven.apache.org</url>
 
   <properties>
-   <org.springframework.version>4.1.0.RELEASE</org.springframework.version>
-   <apache.camel.version>2.13.2</apache.camel.version>
-   <slf4j.version>1.7.7</slf4j.version>
+   	<org.springframework.version>4.1.0.RELEASE</org.springframework.version>
+   	<apache.camel.version>2.14.0</apache.camel.version>
+   	<slf4j.version>1.7.7</slf4j.version>
   </properties>
 
   <dependencies>
@@ -60,12 +59,12 @@
   	<dependency>  
   		<groupId>org.hibernate</groupId>
   		<artifactId>hibernate-core</artifactId>
-  		<version>3.6.10.Final</version>
+  		<version>4.3.7.Final</version>
   	</dependency>
   	<dependency>
   		<groupId>org.hibernate</groupId>
   		<artifactId>hibernate-entitymanager</artifactId>
-  		<version>3.6.10.Final</version>
+  		<version>4.3.7.Final</version>
   	</dependency>
   	<dependency>
   		<groupId>org.hsqldb</groupId>
@@ -93,11 +92,6 @@
   		<version>1.1</version>
   	</dependency>
   	<dependency>
-  		<groupId>org.slf4j</groupId>
-  		<artifactId>slf4j-log4j12</artifactId>
-  		<version>1.7.7</version>
-  	</dependency>
-  	<dependency>
   		<groupId>org.apache.camel</groupId>
   		<artifactId>camel-core</artifactId>
   		<version>${apache.camel.version}</version>
@@ -123,11 +117,15 @@
   		<artifactId>camel-jms</artifactId>
   		<version>${apache.camel.version}</version>
   	</dependency>
+  	 	<dependency>
+    	<groupId>org.apache.activemq</groupId>
+    	<artifactId>activemq-client</artifactId>
+    	<version>5.10.0</version>
+	</dependency>
   	<dependency>
     	<groupId>org.apache.activemq</groupId>
-    	<artifactId>apache-activemq</artifactId>
+    	<artifactId>activemq-camel</artifactId>
     	<version>5.10.0</version>
-    	<type>pom</type>
 	</dependency>
 	<dependency>
 		<groupId>org.apache.activemq</groupId>
@@ -170,9 +168,46 @@
     	<artifactId>spring-jmx</artifactId>
     	<version>2.0.8</version>
     </dependency>
+   <!-- <dependency>
+    	<groupId>com.atomikos</groupId>
+    	<artifactId>transactions-hibernate3</artifactId>
+    	<version>3.9.3</version>
+    </dependency> -->
+    <dependency>
+    	<groupId>com.atomikos</groupId>
+    	<artifactId>transactions-jdbc</artifactId>
+    	<version>3.9.3</version>
+    </dependency>
+    <dependency>
+    	<groupId>com.atomikos</groupId>
+    	<artifactId>transactions-jta</artifactId>
+    	<version>3.9.3</version>
+    </dependency>
+    <dependency>
+    	<groupId>com.atomikos</groupId>
+    	<artifactId>transactions-jms</artifactId>
+    	<version>3.9.3</version>
+    </dependency>
+    <dependency>
+    	<groupId>javax.inject</groupId>
+    	<artifactId>javax.inject</artifactId>
+    	<version>1</version>
+    </dependency>
   </dependencies>
   
   <build>
+  	<resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                    <include>**/*.properties</include>
+                </includes>
+            </resource>
+    </resources>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -190,11 +225,11 @@
 					</execution>
 				</executions>
 			</plugin>
-			<plugin>
+			<!-- <plugin>
 				<groupId>org.liquibase</groupId>
 				<artifactId>liquibase-maven-plugin</artifactId>
 				<version>3.2.2</version>
-				<configuration>
+				<configuration> 
 					<propertyFile>src/main/resources/server-internal2.properties</propertyFile>
 					<changeLogFile>src/main/resources/db-changelog-employee.xml</changeLogFile>
 					<promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
@@ -208,7 +243,7 @@
 						</goals>
 					</execution>
 				</executions>
-			</plugin>
+			</plugin> -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-assembly-plugin</artifactId>
@@ -219,7 +254,7 @@
 					</descriptorRefs>
 					<archive>
 						<manifest>
-							<mainClass>com.example.Main</mainClass>
+							<mainClass>org.apache.camel.spring.javaconfig.Main</mainClass>
 						</manifest>
 					</archive>
 				</configuration>

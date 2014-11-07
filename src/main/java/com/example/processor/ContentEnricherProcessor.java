@@ -1,6 +1,5 @@
 package com.example.processor;
 
-import javax.annotation.Resource;
 import org.apache.camel.Exchange;
 import org.apache.camel.Message;
 import org.apache.camel.Processor;
@@ -13,20 +12,21 @@ import com.example.persistence.dao.StatusDAO;
 
 @Transactional(value = "transactionManager")
 public class ContentEnricherProcessor implements Processor {
-	
-	@Resource
+
 	private StatusDAO statusDAO;
-	private Logger logger;
-	
-	public ContentEnricherProcessor() {
+	private Logger logger = LoggerFactory.getLogger(ContentEnricherProcessor.class);
+
+	public ContentEnricherProcessor(StatusDAO statusDAO) {
 		super();
+		this.statusDAO = statusDAO;
 	}
 
 	/**
 	 * This method processes the data by aggregating the data.
 	 * @param exchange the exchange.
 	 * @throws Exception when an Exception occurs.
-	 */	
+	 */
+	@Override
 	public void process(Exchange exchange) throws Exception {
 		Message message = exchange.getIn();
 		Entity entity = (Entity) message.getBody();
@@ -34,7 +34,7 @@ public class ContentEnricherProcessor implements Processor {
 		message.setBody(status);
 		exchange.setOut(message);
 	}
-	
+
 	Status process(Entity entity) {
 		Status status = null;
 		if(entity.getUserId() != null) {

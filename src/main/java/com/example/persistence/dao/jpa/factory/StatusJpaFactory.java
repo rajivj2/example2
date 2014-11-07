@@ -7,16 +7,12 @@ import org.springframework.context.annotation.Configuration;
 import com.example.persistence.dao.StatusDAO;
 import com.example.persistence.dao.jpa.StatusJpaDAO;
 
-/**
- * This class represents the AccountJpaFactory.
- * @author Rajiv Jain
- */
 @Configuration
 public class StatusJpaFactory {
-	
+
 	@PersistenceContext(unitName = "defaultEntityManager")
 	EntityManager entityManager;
-	
+
 	@Bean
 	public StatusDAO statusDAO() throws Exception {
 		StatusDAO statusDAO = new StatusJpaDAO(entityManager);
